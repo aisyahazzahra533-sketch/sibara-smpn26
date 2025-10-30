@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Pengguna - SIBARA</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Kelola Pengguna</h1>
+                    <p>Sistem Peminjaman Barang dan Ruangan - SMP Negeri 26 Surabaya</p>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Admin</span>
+                    <a href="dashboard.html" class="btn btn-small btn-secondary">Kembali</a>
+                    <a href="../index.html" class="logout-btn">Logout</a>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title">Tambah Pengguna Baru</h2>
+                <form id="tambahUserForm">
+                    <div class="form-group">
+                        <label for="namaUser">Nama Lengkap</label>
+                        <input type="text" id="namaUser" name="namaUser" required placeholder="Masukkan nama lengkap">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jabatanUser">Jabatan</label>
+                        <select id="jabatanUser" name="jabatanUser" required>
+                            <option value="">Pilih Jabatan</option>
+                            <option value="Guru">Guru</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Karyawan">Karyawan</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Tambah Pengguna</button>
+                </form>
+            </div>
+            
+            <div class="table-container">
+                <h2 class="form-title">Daftar Pengguna</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Lengkap</th>
+                            <th>Jabatan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('userName').textContent = username;
+            }
+        });
+    </script>
+</body>
+</html>
