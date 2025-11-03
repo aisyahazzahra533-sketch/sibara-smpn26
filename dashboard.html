@@ -3,116 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - SIBARA</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard User - SIBARA</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="container">
         <div class="dashboard">
             <div class="dashboard-header">
                 <div>
-                    <h1 class="dashboard-title">SIBARA - Dashboard Admin</h1>
+                    <h1 class="dashboard-title">SIBARA - Dashboard User</h1>
                     <p>Sistem Peminjaman Barang dan Ruangan - SMP Negeri 26 Surabaya</p>
                 </div>
                 <div class="user-info">
-                    <span class="user-name" id="userName">Admin</span>
+                    <span class="user-name" id="userName">User</span>
                     <a href="javascript:void(0)" onclick="logout()" class="logout-btn">Logout</a>
-                </div>
+</div>
             </div>
             
             <div class="card-grid">
-                <a href="inventory.html" class="card">
-                    <h3>📦 Kelola Inventaris</h3>
-                    <p>Kelola daftar barang dan ruangan yang tersedia untuk dipinjam</p>
+                <a href="pinjam-barang.html" class="card">
+                    <h3>📦 Pinjam Barang</h3>
+                    <p>Form untuk meminjam barang seperti proyektor, spidol, kabel HDMI, dll.</p>
                 </a>
                 
-                <a href="users.html" class="card">
-                    <h3>👥 Kelola Pengguna</h3>
-                    <p>Kelola daftar nama guru, staff, dan karyawan yang dapat meminjam</p>
+                <a href="pinjam-ruangan.html" class="card">
+                    <h3>🏫 Pinjam Ruangan</h3>
+                    <p>Form untuk meminjam ruangan seperti Lab IPA, Aula, Perpustakaan, dll.</p>
                 </a>
-                
-                <a href="#" id="lihatPeminjaman" class="card">
-                    <h3>📋 Daftar Peminjaman Aktif</h3>
-                    <p>Lihat dan kelola daftar peminjaman barang dan ruangan yang sedang aktif</p>
-                </a>
-
-                <a href="#" id="lihatRiwayat" class="card">
-                    <h3>📊 Riwayat Pengembalian</h3>
-                    <p>Lihat riwayat lengkap semua pengembalian barang dan ruangan</p>
-                </a>
-            </div>
-            
-            <!-- Section Daftar Peminjaman Aktif -->
-            <div id="peminjamanAktif" class="table-container" style="display: none; margin-top: 30px;">
-                <div class="section-header">
-                    <h2 class="form-title">Daftar Peminjaman Aktif</h2>
-                    <button class="btn btn-secondary btn-small" onclick="refreshPeminjaman()">🔄 Refresh</button>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Nama Peminjam</th>
-                            <th>Jabatan</th>
-                            <th>Barang/Ruangan</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Jam Pinjam</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="peminjamanTableBody">
-                        <tr><td colspan="7" style="text-align: center; color: #666;">Loading...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Section Riwayat Pengembalian dengan Statistik -->
-            <div id="riwayatPeminjaman" class="table-container" style="display: none; margin-top: 30px;">
-                <div class="section-header">
-                    <h2 class="form-title">Riwayat Pengembalian</h2>
-                    <div class="header-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalBarangRiwayat">0</span>
-                            <span class="stat-label">Total Barang</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalRuanganRiwayat">0</span>
-                            <span class="stat-label">Total Ruangan</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="peminjamanAktifRiwayat">0</span>
-                            <span class="stat-label">Peminjaman Aktif</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="pengembalianSelesaiRiwayat">0</span>
-                            <span class="stat-label">Pengembalian Selesai</span>
-                        </div>
-                        <button class="btn btn-secondary btn-small" onclick="refreshRiwayat()">🔄 Refresh</button>
-                    </div>
-                </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Nama Peminjam</th>
-                            <th>Jabatan</th>
-                            <th>Barang/Ruangan</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Jam Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                            <th>Jam Kembali</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="riwayatTableBody">
-                        <tr><td colspan="8" style="text-align: center; color: #666;">Loading...</td></tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-
-    <!-- Load scripts dengan absolute path -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('userName').textContent = username;
+            }
+        });
+    </script>     <!-- Script lainnya -->
     <script src="/js/auth.js"></script>
-    <script src="/js/admin.js"></script>
+    
+    <!-- TAMBAH INI - Logout Function -->
+    <script>
+        // Pastikan logout function ada
+        function logout() {
+            console.log('🔄 Logging out...');
+            // Hapus semua data login
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            // Redirect ke login page
+            window.location.href = '/';
+        }
+        
+        // Test: cek jika function terload
+        console.log('✅ Logout function loaded:', typeof logout);
+    </script>
+</body>
+</html>
 </body>
 </html>
