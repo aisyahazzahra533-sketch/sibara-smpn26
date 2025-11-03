@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Inventaris - SIBARA</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Kelola Inventaris</h1>
+                    <p>Sistem Peminjaman Barang dan Ruangan - SMP Negeri 26 Surabaya</p>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Admin</span>
+                    <a href="dashboard.html" class="btn btn-small btn-secondary">Kembali</a>
+                    <a href="../login.html" class="logout-btn">Logout</a>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title">Tambah Barang Baru</h2>
+                <form id="tambahBarangForm">
+                    <div class="form-group">
+                        <label for="namaBarang">Nama Barang</label>
+                        <input type="text" id="namaBarang" name="namaBarang" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kategoriBarang">Kategori</label>
+                        <select id="kategoriBarang" name="kategoriBarang" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Alat Tulis">Alat Tulis</option>
+                            <option value="Perabot">Perabot</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jumlahBarang">Jumlah Tersedia</label>
+                        <input type="number" id="jumlahBarang" name="jumlahBarang" min="1" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Tambah Barang</button>
+                </form>
+            </div>
+            
+            <div class="table-container">
+    <h2 class="form-title">Daftar Barang</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Nama Barang</th>
+                <th>Kategori</th>
+                <th>Jumlah Total</th>
+                <th>Jumlah Tersedia</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="barangTableBody">
+            <!-- Data akan diisi oleh JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container" style="margin-top: 30px;">
+    <h2 class="form-title">Daftar Ruangan</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Nama Ruangan</th>
+                <th>Kapasitas</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+    
+    </table>
+</div>
+            
+            <div class="form-container" style="margin-top: 30px;">
+                <h2 class="form-title">Tambah Ruangan Baru</h2>
+                <form id="tambahRuanganForm">
+                    <div class="form-group">
+                        <label for="namaRuangan">Nama Ruangan</label>
+                        <input type="text" id="namaRuangan" name="namaRuangan" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kapasitasRuangan">Kapasitas</label>
+                        <input type="number" id="kapasitasRuangan" name="kapasitasRuangan" min="1" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Tambah Ruangan</button>
+                </form>
+            </div>
+            
+           <div class="table-container" style="margin-top: 30px;">
+    <h2 class="form-title">Daftar Ruangan</h2>
+    <table class="data-table ruangan-table">
+        <thead>
+            <tr>
+                <th>Nama Ruangan</th>
+                <th>Kapasitas</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="ruanganTableBody">
+            <!-- Data akan diisi oleh JavaScript -->
+        </tbody>
+    </table>
+</div>
+    
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('userName').textContent = username;
+            }
+            
+            loadInventaris();
+        });
+    </script>
+</body>
+</html>
