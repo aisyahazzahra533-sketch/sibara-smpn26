@@ -40,7 +40,25 @@
             <div id="errorMessage" class="error-message"></div>
         </div>
     </div>
-    <script src="js/auth.js"></script>
-</body>
+    <script src="./js/auth.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Login berhasil jika username dan password tidak kosong
+        if (username && password) {
+            // Redirect ke dashboard admin
+            window.location.href = 'admin/dashboard.html';
+        } else {
+            errorMessage.textContent = 'Username dan password harus diisi!';
+            errorMessage.style.display = 'block';
+        }
+    });
+</script></body>
 
 </html>
+
